@@ -19,6 +19,10 @@ io.on("connection", (socket) => {
     msg: "Bienvenido al servidor",
     fecha: new Date(),
   });
+
+  socket.on("mensaje-cliente", (data) => {
+    console.log(data);
+  })
 });
 
 server.listen(process.env.PORT, () => {
