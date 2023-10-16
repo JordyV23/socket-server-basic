@@ -15,14 +15,15 @@ const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 
 io.on("connection", (socket) => {
-  socket.emit("mensaje-bienvenida", {
-    msg: "Bienvenido al servidor",
-    fecha: new Date(),
-  });
 
-  socket.on("mensaje-cliente", (data) => {
-    console.log(data);
-  })
+    socket.on("message-from-client", (data) => {
+        console.log(data);
+
+        io.emit("message-from-server", data);
+    });
+
+
+
 });
 
 server.listen(process.env.PORT, () => {
