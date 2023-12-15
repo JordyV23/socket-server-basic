@@ -10,7 +10,7 @@ class Sockets {
   socketEvents() {
     // On connection
     this.io.on("connection", (socket) => {
-      console.log("Client connected");
+      console.log("Client connected:" + new Date().toTimeString());
 
       // Emit to the client the list of bands
       // Senden Sie die Liste der Bänder an den Kunden
