@@ -15,6 +15,12 @@ class Sockets {
       // Emit to the client the list of bands
       // Senden Sie die Liste der Bänder an den Kunden
       socket.emit("current-bands", this.bandList.getBands());
+
+      // Emit from the client to increase the votes
+      socket.on("votar-banda", (id) => {
+        this.bandList.increaseVotes(id);
+        this.io.emit("current-bands", this.bandList.getBands());
+      });
     });
   }
 }

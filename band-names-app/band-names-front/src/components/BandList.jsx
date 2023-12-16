@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const BandList = ({ data }) => {
+export const BandList = ({ data,votar }) => {
   const [bands, setBands] = useState(data);
 
   useEffect(() => {
@@ -8,7 +8,8 @@ export const BandList = ({ data }) => {
   }, [data]);
 
   const cambionNombre = (event, id) => {
-    const { nombre } = event.target.value;
+    const nombre  = event.target.value;
+
     setBands((bands) =>
       bands.map((band) => {
         if (band.id === id) {
@@ -23,11 +24,12 @@ export const BandList = ({ data }) => {
     console.log(id, nombre);
   };
 
+
   const CreateRows = () => {
     return bands.map((band) => (
       <tr key={band.id}>
         <td>
-          <button className="btn btn-primary">+1</button>
+          <button className="btn btn-primary" onClick={ () => votar(band.id) }>+1</button>
         </td>
         <td>
           <input
@@ -39,7 +41,7 @@ export const BandList = ({ data }) => {
           />
         </td>
         <td>
-          <h3>15</h3>
+          <h3>{band.votes}</h3>
         </td>
         <td>
           <button className="btn btn-danger">Borrar</button>

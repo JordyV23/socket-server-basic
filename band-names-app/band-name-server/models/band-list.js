@@ -40,7 +40,7 @@ class BandList {
    * Function to increase the votes of a band
    * @param {*} id - The id of the band to increase the votes
    */
-  incraseVotes(id) {
+  increaseVotes(id) {
     this.bands = this.bands.map((band) => {
       if (band.id === id) {
         band.votes += 1;
