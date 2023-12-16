@@ -21,6 +21,18 @@ class Sockets {
         this.bandList.increaseVotes(id);
         this.io.emit("current-bands", this.bandList.getBands());
       });
+
+      // Emit from the client to delete a band
+      socket.on("borrar-banda", (id) => {
+        this.bandList.removeBand(id);
+        this.io.emit("current-bands", this.bandList.getBands());
+      });
+
+      // Emit from the client to increase the votes
+      socket.on("cambiar-nombre-banda", (id,nombre) => {
+        this.bandList.changeBandName(id,nombre);
+        this.io.emit("current-bands", this.bandList.getBands());
+      });
     });
   }
 }

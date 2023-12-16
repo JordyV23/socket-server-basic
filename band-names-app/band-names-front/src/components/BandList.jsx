@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const BandList = ({ data,votar }) => {
+export const BandList = ({ data, votar, borrar, cambiarNombre }) => {
   const [bands, setBands] = useState(data);
 
   useEffect(() => {
@@ -8,7 +8,7 @@ export const BandList = ({ data,votar }) => {
   }, [data]);
 
   const cambionNombre = (event, id) => {
-    const nombre  = event.target.value;
+    const nombre = event.target.value;
 
     setBands((bands) =>
       bands.map((band) => {
@@ -22,14 +22,16 @@ export const BandList = ({ data,votar }) => {
 
   const onFocuslost = (id, nombre) => {
     console.log(id, nombre);
+    cambiarNombre(id, nombre);
   };
-
 
   const CreateRows = () => {
     return bands.map((band) => (
       <tr key={band.id}>
         <td>
-          <button className="btn btn-primary" onClick={ () => votar(band.id) }>+1</button>
+          <button className="btn btn-primary" onClick={() => votar(band.id)}>
+            +1
+          </button>
         </td>
         <td>
           <input
@@ -37,14 +39,16 @@ export const BandList = ({ data,votar }) => {
             className="form-control"
             value={band.name}
             onChange={(event) => cambionNombre(event, band.id)}
-            onBlur={() => onFocuslost(band.id, band, name)}
+            onBlur={() => onFocuslost(band.id, band.name)}
           />
         </td>
         <td>
           <h3>{band.votes}</h3>
         </td>
         <td>
-          <button className="btn btn-danger">Borrar</button>
+          <button className="btn btn-danger" onClick={() => borrar(band.id)}>
+            Borrar
+          </button>
         </td>
       </tr>
     ));
