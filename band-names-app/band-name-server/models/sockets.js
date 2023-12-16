@@ -28,9 +28,15 @@ class Sockets {
         this.io.emit("current-bands", this.bandList.getBands());
       });
 
-      // Emit from the client to increase the votes
-      socket.on("cambiar-nombre-banda", (id,nombre) => {
-        this.bandList.changeBandName(id,nombre);
+      // Emit from the client to change de band name
+      socket.on("cambiar-nombre-banda", (id, nombre) => {
+        this.bandList.changeBandName(id, nombre);
+        this.io.emit("current-bands", this.bandList.getBands());
+      });
+
+      // Emit from the client to create a new band
+      socket.on("crear-banda", (nombre) => {
+        this.bandList.addBand(nombre);
         this.io.emit("current-bands", this.bandList.getBands());
       });
     });
