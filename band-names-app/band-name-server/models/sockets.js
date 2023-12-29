@@ -35,7 +35,7 @@ class Sockets {
       });
 
       // Emit from the client to create a new band
-      socket.on("crear-banda", (nombre) => {
+      socket.on("crear-banda", ({nombre}) => {
         this.bandList.addBand(nombre);
         this.io.emit("current-bands", this.bandList.getBands());
       });
