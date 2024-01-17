@@ -1,10 +1,13 @@
 import { ArrowDownOutlined, RobotFilled } from "@ant-design/icons";
 import { Button, Col, Row, Typography } from "antd";
+import { useHideMenu } from "../hooks/useHideMenu";
 import React from "react";
 
 const { Title, Text } = Typography;
 
 export const CrearTicket = () => {
+  useHideMenu(true);
+
   const nuevoTicket = () => {
     console.log("Nuevo Ticket");
   };

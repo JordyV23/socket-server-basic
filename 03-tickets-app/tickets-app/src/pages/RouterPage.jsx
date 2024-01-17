@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -10,6 +10,8 @@ import { Layout, Menu, theme } from "antd";
 
 import { sidebarItems, routerItems } from "../utils";
 
+import { UiContext } from "../context/UiContexts";
+
 const { Sider, Content } = Layout;
 
 export const RouterPage = () => {
@@ -17,10 +19,12 @@ export const RouterPage = () => {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
+  const {ocultarMenu} =  useContext(UiContext)
+
   return (
     <Router>
       <Layout style={{ height: "100vh" }}>
-        <Sider collapsedWidth="0" breakpoint="md">
+        <Sider collapsedWidth="0" breakpoint="md" hidden={ocultarMenu}>
           <div className="demo-logo-vertical" />
           <Menu
             theme="dark"

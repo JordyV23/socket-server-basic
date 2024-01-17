@@ -1,10 +1,14 @@
 import { Button, Card, Col, List, Row, Tag, Typography,Divider } from "antd";
 import React from "react";
 import { data } from "../utils/tempData";
+import { useHideMenu } from "../hooks/useHideMenu";
 
 const { Title, Text } = Typography;
 
 export const Cola = () => {
+
+  useHideMenu(true);
+
   return (
     <>
       <Title level={1}>Atendiendo al Cliente</Title>
