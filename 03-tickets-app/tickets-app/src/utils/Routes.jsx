@@ -6,6 +6,11 @@ import {
 import { Link } from "react-router-dom";
 import { Escritorio, Ingresar, Cola, CrearTicket } from "../pages";
 
+/**
+ * Array de objetos que representa los elementos de la barra lateral.
+ * Cada objeto tiene propiedades como 'key', 'icon' y 'label'.
+ * @type {Array<Object>}
+ */
 export const sidebarItems = [
   {
     key: "1",
@@ -24,6 +29,11 @@ export const sidebarItems = [
   },
 ];
 
+/**
+ * Array de objetos que representa las rutas y elementos correspondientes.
+ * Cada objeto tiene propiedades como 'path' y 'element'.
+ * @type {Array<Object>}
+ */
 export const routerItems = [
   {
     path: "/ingresar",

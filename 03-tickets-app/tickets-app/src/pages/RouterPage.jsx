@@ -14,16 +14,25 @@ import { UiContext } from "../context/UiContexts";
 
 const { Sider, Content } = Layout;
 
+/**
+ * Componente principal que define la estructura del enrutador de la aplicación.
+ * Utiliza el contexto UiContext para controlar la visibilidad del menú.
+ * @returns {JSX.Element} Elemento JSX que representa la estructura del enrutador.
+ */
 export const RouterPage = () => {
+  // Obtiene los tokens del tema para la personalización del estilo
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
-  const {ocultarMenu} =  useContext(UiContext)
+  // Obtiene el estado de ocultar el menú del contexto UiContext
+  const { ocultarMenu } = useContext(UiContext);
 
+  // Renderiza la estructura del enrutador
   return (
     <Router>
       <Layout style={{ height: "100vh" }}>
+        {/* Barra lateral (Sider) */}
         <Sider collapsedWidth="0" breakpoint="md" hidden={ocultarMenu}>
           <div className="demo-logo-vertical" />
           <Menu
@@ -33,7 +42,9 @@ export const RouterPage = () => {
             items={sidebarItems}
           />
         </Sider>
+        {/* Contenido principal (Layout) */}
         <Layout>
+          {/* Contenido de la página (Content) */}
           <Content
             style={{
               margin: "24px 16px",
@@ -43,6 +54,7 @@ export const RouterPage = () => {
               borderRadius: borderRadiusLG,
             }}
           >
+            {/* Definición de rutas */}
             <Routes>
               {routerItems.map((item) => (
                 <Route
@@ -52,11 +64,7 @@ export const RouterPage = () => {
                 />
               ))}
 
-              <Route
-                path={routerItems[0].path}
-                element={routerItems[0].element}
-              />
-
+              {/* Redirección por defecto a la página de ingreso */}
               <Route path="/*" element={<Navigate to="/ingresar" />} />
             </Routes>
           </Content>
